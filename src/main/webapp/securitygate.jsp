@@ -67,9 +67,8 @@ body {
 							<option value="${it.houseid}">${it.block_name}</option>
 						</c:forEach>
 						<c:set var="blockname" value="${it.block_name}"></c:set>
-					</select> 
-					<br><label for="cars">Select house:</label> <select id="cars"
-						name="house_number">
+					</select> <br> <label for="cars">Select house:</label> <select
+						id="cars" name="house_number">
 						<c:forEach items="${houses}" var="it">
 							<%-- 						<c:if test="${(it.block_name == house_number)}">
  --%>
@@ -88,14 +87,16 @@ body {
 			</div>
 			<div class="col-md-8">
 
-				<table class="table mt-5">
-					<thead class="thead-dark">
+				<table class="table mt-5 ">
+					<thead class="thead-dark ">
 						<tr>
 							<th scope="col">name</th>
 							<th scope="col">type</th>
 							<th scope="col">block no</th>
 							<th scope="col">house_number</th>
 							<th scope="col">exit time</th>
+							<th scope="col">exit</th>
+
 							<th scope="col">status</th>
 
 
@@ -104,12 +105,15 @@ body {
 					<tbody>
 						<c:forEach items="${instruction}" var="it">
 							<c:if test="${it.status=='Not allow'}">
-								<tr style="hight: 10px;">
+								<tr style="hight: 8px;">
 									<td>${it.name}</td>
 									<td>${it.type }</td>
 									<td>${it.block_name}</td>
 									<td>${it.house_number}</td>
 									<td>${it.exit_time}</td>
+									<td style="background-color: orange; border-radius: 10px; text-align: center; color: white; margin-right: 2px;"><a
+										href="ExitetimeController?instructionid=${it.instructionid}" class="btn">Exit</a></td>
+
 									<td
 										style="background-color: red; border-radius: 10px; text-align: center; color: white;">${it.status}
 									</td>
@@ -124,6 +128,9 @@ body {
 									<td>${it.block_name}</td>
 									<td>${it.house_number}</td>
 									<td>${it.exit_time}</td>
+									<td style="background-color: orange; border-radius: 10px; text-align: center; color: white; margin-right: 2px;"><a
+										href="ExitetimeController?instructionid=${it.instructionid}" class="btn">Exit</a></td>
+
 									<td
 										style="background-color: green; border-radius: 10px; text-align: center; color: white;">${it.status}
 									</td>
@@ -133,8 +140,6 @@ body {
 						</c:forEach>
 					</tbody>
 				</table>
-
-
 			</div>
 		</div>
 	</div>

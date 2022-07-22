@@ -16,6 +16,4 @@ public class AddmemberBuyhouseController extends HttpServlet {
 		request.setAttribute("houseid", houseid);
 		request.getRequestDispatcher("addmember.jsp").forward(request, response);
 	}
-
-
 }

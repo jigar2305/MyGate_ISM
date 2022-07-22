@@ -38,7 +38,7 @@ public class AddinstructionbymemberController extends HttpServlet {
 			response.sendRedirect("addinstructionbymember.jsp");
 		} else {
 
-			response.sendRedirect("home.jsp");
+			response.sendRedirect("welcome.jsp");
 		}
 	}
 

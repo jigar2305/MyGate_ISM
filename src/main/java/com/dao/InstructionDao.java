@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import com.bean.InstructionBean;
 import com.util.Dbconnection;
@@ -150,8 +154,8 @@ public class InstructionDao {
 		ArrayList<InstructionBean> instruction = new ArrayList<InstructionBean>();
 		// TODO Auto-generated method stub
 		try (Connection con = Dbconnection.getConnection();
-				PreparedStatement ptsmt = con.prepareStatement(
-						"select * from instruction i,house h where i.houseid=h.houseid");) {
+				PreparedStatement ptsmt = con
+						.prepareStatement("select * from instruction i,house h where i.houseid=h.houseid");) {
 			ResultSet rs = ptsmt.executeQuery();
 			while (rs.next()) {
 
@@ -177,6 +181,28 @@ public class InstructionDao {
 			e.printStackTrace();
 		}
 		return instruction;
+	}
+
+	public int exitetime(int instructionid) {
+		Connection con = Dbconnection.getConnection();
+		try {
+			PreparedStatement pstmt = con.prepareStatement("update instruction set exit_time=? where instructionid=?");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");  
+			   LocalDateTime now = LocalDateTime.now();  
+			   System.out.println(dtf.format(now));  
+			
+			pstmt.setObject(1, dtf.format(now));
+
+			pstmt.setInt(2, instructionid);
+			int record = pstmt.executeUpdate();
+
+			return record;
+
+		} catch (SQLException e) {
+			System.out.println("smw in exitetime()");
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

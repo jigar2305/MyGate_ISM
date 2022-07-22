@@ -29,7 +29,7 @@ public class AddhouseController extends HttpServlet {
 		
 		HouseDao houseDao = new HouseDao();
 		if(houseDao.addhouse(houseBean)) {
-			request.getRequestDispatcher("home.jsp").forward(request, response);
+			request.getRequestDispatcher("ListhousebyidController").forward(request, response);
 		}else {
 			request.setAttribute("msg", "something went wrong");
 			request.getRequestDispatcher("addhouse.jsp").forward(request, response);

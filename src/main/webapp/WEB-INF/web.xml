@@ -280,4 +280,22 @@
     <servlet-name>ListinstructiontoadminController</servlet-name>
     <url-pattern>/ListinstructiontoadminController</url-pattern>
   </servlet-mapping>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/500.jsp</location>
+  </error-page>
+  <servlet>
+    <description></description>
+    <display-name>ExitetimeController</display-name>
+    <servlet-name>ExitetimeController</servlet-name>
+    <servlet-class>com.controller.ExitetimeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExitetimeController</servlet-name>
+    <url-pattern>/ExitetimeController</url-pattern>
+  </servlet-mapping>
 </web-app>

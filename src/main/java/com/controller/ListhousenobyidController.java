@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bean.HouseBean;
-import com.bean.InstructionBean;
 import com.dao.HouseDao;
-import com.dao.InstructionDao;
 
 
 public class ListhousenobyidController extends HttpServlet {
