@@ -9,6 +9,7 @@ public class InstructionBean {
 	private String block_name;
 	private String exit_time;
 	private String date;
+	private int count;
 	private int instructionid;
 	public String getHouse_number() {
 		return house_number;
@@ -77,5 +78,11 @@ public class InstructionBean {
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 }

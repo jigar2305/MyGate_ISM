@@ -23,13 +23,16 @@ body {
 	width: 200px;
 	border-radius: 25px;
 }
+
+#isDisabled {
+	pointer-event: none;
+	cursor: default;
+}
 </style>
 
 </head>
 <body>
-
 	<jsp:include page="navsecurity.jsp"></jsp:include>
-
 	<div class="container-fluid">
 		<div class="row ml-2 mr-2">
 
@@ -70,11 +73,7 @@ body {
 					</select> <br> <label for="cars">Select house:</label> <select
 						id="cars" name="house_number">
 						<c:forEach items="${houses}" var="it">
-							<%-- 						<c:if test="${(it.block_name == house_number)}">
- --%>
 							<option value="${it.houseid}">${it.house_number}</option>
-							<%-- 						</c:if> 
- --%>
 						</c:forEach>
 					</select> ${FlateError} <br> <br>
 					<div style="text-align: center;">
@@ -82,11 +81,8 @@ body {
 					</div>
 
 				</form>
-
-
 			</div>
 			<div class="col-md-8">
-
 				<table class="table mt-5 ">
 					<thead class="thead-dark ">
 						<tr>
@@ -95,11 +91,8 @@ body {
 							<th scope="col">block no</th>
 							<th scope="col">house_number</th>
 							<th scope="col">exit time</th>
-							<th scope="col">exit</th>
-
 							<th scope="col">status</th>
-
-
+							<th scope="col">exit</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -111,12 +104,21 @@ body {
 									<td>${it.block_name}</td>
 									<td>${it.house_number}</td>
 									<td>${it.exit_time}</td>
-									<td style="background-color: orange; border-radius: 10px; text-align: center; color: white; margin-right: 2px;"><a
-										href="ExitetimeController?instructionid=${it.instructionid}" class="btn">Exit</a></td>
 
 									<td
 										style="background-color: red; border-radius: 10px; text-align: center; color: white;">${it.status}
 									</td>
+									<td
+										style="background-color: orange; border-radius: 10px; text-align: center; color: white; margin-right: 2px;">
+										<c:if test="${(it.count == 1)}">
+											Exit
+										</c:if> <c:if test="${(it.count == 0)}">
+											<a
+												href="ExitetimeController?instructionid=${it.instructionid}"
+												class="btn">Exit</a>
+										</c:if>
+									</td>
+
 								</tr>
 							</c:if>
 						</c:forEach>
@@ -128,11 +130,19 @@ body {
 									<td>${it.block_name}</td>
 									<td>${it.house_number}</td>
 									<td>${it.exit_time}</td>
-									<td style="background-color: orange; border-radius: 10px; text-align: center; color: white; margin-right: 2px;"><a
-										href="ExitetimeController?instructionid=${it.instructionid}" class="btn">Exit</a></td>
 
 									<td
 										style="background-color: green; border-radius: 10px; text-align: center; color: white;">${it.status}
+									</td>
+									<td
+										style="background-color: orange; border-radius: 10px; text-align: center; color: white; margin-right: 2px;">
+										<c:if test="${(it.count == 1)}">
+											Exit
+										</c:if> <c:if test="${(it.count == 0)}">
+											<a
+												href="ExitetimeController?instructionid=${it.instructionid}"
+												class="btn">Exit</a>
+										</c:if>
 									</td>
 
 								</tr>
@@ -145,5 +155,6 @@ body {
 	</div>
 
 </body>
+
 
 </html>

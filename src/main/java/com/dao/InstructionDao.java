@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import com.bean.InstructionBean;
@@ -61,6 +59,7 @@ public class InstructionDao {
 				inst.setHouse_number(rs.getString("house_number"));
 				inst.setType(rs.getString("type"));
 				inst.setExit_time(rs.getString("exit_time"));
+				inst.setCount(rs.getInt("count"));
 				instruction.add(inst);
 
 			}
@@ -97,6 +96,7 @@ public class InstructionDao {
 				inst.setHouse_number(rs.getString("house_number"));
 				inst.setType(rs.getString("type"));
 				inst.setExit_time(rs.getString("exit_time"));
+				inst.setCount(rs.getInt("count"));
 				instruction.add(inst);
 
 			}
@@ -173,6 +173,7 @@ public class InstructionDao {
 				inst.setType(rs.getString("type"));
 				inst.setDate(rs.getString("date"));
 				inst.setExit_time(rs.getString("exit_time"));
+				inst.setCount(rs.getInt("count"));
 				instruction.add(inst);
 
 			}
@@ -186,14 +187,14 @@ public class InstructionDao {
 	public int exitetime(int instructionid) {
 		Connection con = Dbconnection.getConnection();
 		try {
-			PreparedStatement pstmt = con.prepareStatement("update instruction set exit_time=? where instructionid=?");
+			PreparedStatement pstmt = con.prepareStatement("update instruction set exit_time=?,count=? where instructionid=?");
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");  
 			   LocalDateTime now = LocalDateTime.now();  
-			   System.out.println(dtf.format(now));  
 			
 			pstmt.setObject(1, dtf.format(now));
+			pstmt.setInt(2, 1);
 
-			pstmt.setInt(2, instructionid);
+			pstmt.setInt(3, instructionid);
 			int record = pstmt.executeUpdate();
 
 			return record;
